@@ -1,5 +1,5 @@
 ---
-name: journal
+name: journal-enhancing
 description: Enhance personal journal entries from Notion. Read entries marked for AI touchup, craft creative titles, emojis, and rich narrative descriptions, then write them back. Also find gaps in journal entries.
 allowed-tools: Read, Bash(python3:*)
 ---
@@ -13,7 +13,7 @@ Enhance daily journal entries stored in a Notion database. Transform brief notes
 ### Step 1: Read Entries
 
 ```bash
-python3 .claude/skills/journal/scripts/journal_read.py [--limit=N]
+python3 .claude/skills/journal-enhancing/scripts/journal_read.py [--limit=N]
 ```
 
 Returns JSON with entries containing:
@@ -37,7 +37,7 @@ For each entry, generate:
 ### Step 3: Write Enhanced Entries
 
 ```bash
-python3 .claude/skills/journal/scripts/journal_write.py '<json_data>'
+python3 .claude/skills/journal-enhancing/scripts/journal_write.py '<json_data>'
 ```
 
 JSON format:
@@ -55,7 +55,7 @@ Supports single entry or array of entries.
 ### Finding Missing Dates
 
 ```bash
-python3 .claude/skills/journal/scripts/journal_gaps.py [--days=N]
+python3 .claude/skills/journal-enhancing/scripts/journal_gaps.py [--days=N]
 ```
 
 Queries Notion for all journal dates and reports gaps.

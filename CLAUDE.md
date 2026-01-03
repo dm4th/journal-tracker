@@ -10,7 +10,7 @@ Personal productivity tools built around Notion databases. Designed for expansio
 
 Skills live in `.claude/skills/` and auto-trigger based on context:
 
-- **journal** - Enhance daily journal entries with AI-generated titles, emojis, and descriptions
+- **journal-enhancing** - Enhance daily journal entries with AI-generated titles, emojis, and descriptions
 
 ## Environment
 
