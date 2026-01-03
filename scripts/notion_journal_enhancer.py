@@ -19,7 +19,7 @@ Usage:
 
 Environment Variables:
     NOTION_TOKEN: Notion integration token
-    NOTION_DATABASE_ID: Journal database ID
+    NOTION_JOURNAL_DATABASE_ID: Journal database ID
 
 Author: Claude Code AI Assistant
 Created: 2025-11-19
@@ -211,14 +211,14 @@ class NotionJournalEnhancer:
 def main():
     # Check for required environment variables
     token = os.getenv('NOTION_TOKEN')
-    database_id = os.getenv('NOTION_DATABASE_ID')
+    database_id = os.getenv('NOTION_JOURNAL_DATABASE_ID')
 
     if not token or not database_id:
         print("Error: Missing required environment variables.")
-        print("Please set NOTION_TOKEN and NOTION_DATABASE_ID")
+        print("Please set NOTION_TOKEN and NOTION_JOURNAL_DATABASE_ID")
         print("\nExample:")
         print("export NOTION_TOKEN='your_token_here'")
-        print("export NOTION_DATABASE_ID='your_database_id_here'")
+        print("export NOTION_JOURNAL_DATABASE_ID='your_database_id_here'")
         return 1
 
     # Check for dry run flag
