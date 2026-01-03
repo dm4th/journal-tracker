@@ -75,6 +75,78 @@ When enhancing journal entries, maintain these characteristics:
 5. Select relevant emoji
 6. Update entry and uncheck touchup flag
 
+### Title & Emoji Generation System
+
+The enhancer uses a **priority-based selection system** with default mappings that serve as **suggestions for Claude to improve upon at inference time**. The static mappings provide a baseline, but Claude is expected to apply creativity to generate more varied, contextually-appropriate titles and emojis.
+
+#### Design Philosophy
+- **Mappings are starting points, not final answers** - The hardcoded mappings ensure basic functionality, but Claude should use context from the full entry (description, highlight, lowlight, mood) to craft better titles
+- **Avoid repetitive titles** - "Regular Day" and generic titles should be rare; Claude should find something distinctive about each day
+- **Emojis should reflect tone** - Match the emotional tenor of the entry, not just the activity
+- **Descriptions should be rich narratives** - The "Enhanced: {desc}" template is a placeholder; Claude should expand brief notes into full paragraphs
+
+#### Priority Order for Title Selection (highest to lowest):
+
+1. **Special Location** - Travel destinations trigger location-themed titles
+   - Example: Maui → "Maui Escape 🌺", NYC → "NYC Day 🗽"
+   - Home locations (San Francisco, Marin, Rochester, Forest Hill) are excluded
+   - *Claude should craft location-specific titles that capture the trip's vibe*
+
+2. **Unique Events** - Events checked in priority order:
+   - Outdoors first: Skiing 🎿, Camping 🏕️, Hiking 🥾, Beach 🏖️
+   - Personal connections: Date 💕, Family 👨‍👩‍👧, Friends 🤝
+   - Social events: House Party 🎉, Bar 🍻, Intramurals 🏆
+   - Workouts: Road Run 🏃, Gym 🏋️, Peloton 🚴
+   - Entertainment: Bachelor 🌹, Movie 🎬, Video Games 🎮
+   - Cooking: Dinner 👨‍🍳, Breakfast 🍳
+   - Work (lowest priority): Thoughtful 💼, LineDaddy 📱, etc.
+   - *Claude should combine multiple events creatively when relevant*
+
+3. **Highlight Text** - Extract themes from the highlight field
+   - *Claude should use the highlight to inspire a unique title, not just match keywords*
+
+4. **Description Keywords** - Emotional/activity keywords as fallback
+   - "brutal", "productive", "crushed", "birthday", "onsite", etc.
+   - *Claude should read the full description for context, not just keyword-match*
+
+5. **Mood-Based Fallback** - Uses combined mood score:
+   - Score ≥ 3: "Great Day ☀️"
+   - Score ≥ 1: "Good Day 😊"
+   - Score ≤ -3: "Tough Day 😔"
+   - Score ≤ -1: "Challenging Day 💭"
+   - *Claude should find something more distinctive when possible*
+
+#### Mood Score Calculation
+```
+overall_mood = Score - Anxiety - Depression
+```
+- Range: -6 to +6
+- High Score = good day, Low Anxiety/Depression = good
+- Neutral emojis (📝, 📅) can be upgraded to ☀️ or 🌧️ based on mood
+
+#### Database Fields Available for Context
+
+| Field | Type | Usage |
+|-------|------|-------|
+| `Location` | select | Travel detection, 32 locations available |
+| `Events` | multi_select | Activity categorization, 47 event types |
+| `Highlight` | rich_text | Best moment of the day |
+| `Lowlight` | rich_text | Challenge or difficulty |
+| `Description` | rich_text | Raw notes about the day |
+| `Score` | select (-2 to +2) | Overall day rating |
+| `Anxiety` | select (-2 to +2) | Anxiety level |
+| `Depression` | select (-2 to +2) | Depression level |
+
+#### Customizing Default Mappings
+
+To modify the baseline mappings in `notion_journal_enhancer.py`:
+- `EVENT_MAPPINGS`: Event name → (title, emoji) suggestions
+- `LOCATION_MAPPINGS`: Location name → (title, emoji) suggestions
+- `HOME_LOCATIONS`: Locations that shouldn't trigger travel titles
+- `EVENT_PRIORITY`: Order in which events are checked
+
+**Remember**: These are defaults for Claude to improve upon, not rigid rules.
+
 ## Common Patterns
 
 ### Daily Activities
