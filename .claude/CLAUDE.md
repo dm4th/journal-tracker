@@ -11,6 +11,7 @@ Personal productivity tools built around Notion databases. Designed for expansio
 Skills live in `.claude/skills/` and auto-trigger based on context:
 
 - **journal-enhancing** - Enhance daily journal entries with AI-generated titles, emojis, and descriptions
+- **monthly-review** - Generate monthly progress reports against 2026 goals. Analyze journal entries, track goal progress, identify patterns, and provide recommendations.
 
 ## Environment
 
