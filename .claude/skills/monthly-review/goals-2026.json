@@ -1,0 +1,77 @@
+{
+  "year": 2026,
+  "goals": {
+    "physical_fitness": {
+      "gym": {
+        "name": "Gym Sessions",
+        "target_monthly": 9,
+        "target_yearly": 104,
+        "event_patterns": ["Gym", "Workout - Gym"],
+        "description": "Gym 2x/week"
+      },
+      "dog_walks": {
+        "name": "Dog Walks",
+        "target_monthly": 28,
+        "target_yearly": 336,
+        "event_patterns": ["Dog Walk"],
+        "description": "Walk Winnie daily"
+      },
+      "running": {
+        "name": "Road Runs",
+        "target_monthly": 4,
+        "target_yearly": 48,
+        "event_patterns": ["Road Run", "Workout - Road Run"],
+        "description": "Weekly running"
+      }
+    },
+    "relationships": {
+      "dates": {
+        "name": "Date Nights",
+        "target_monthly": 2,
+        "target_yearly": 24,
+        "event_patterns": ["Date", "Personal - Date"],
+        "description": "2+ dates with Maggie per month"
+      },
+      "social": {
+        "name": "Social Events",
+        "target_monthly": 3,
+        "target_yearly": 36,
+        "event_patterns": ["Personal - Friends", "Sports - Intramurals", "Board Games", "Social - Dinner"],
+        "description": "Regular friend time"
+      }
+    },
+    "consistency": {
+      "journaling": {
+        "name": "Journal Entries",
+        "target_monthly": 28,
+        "target_yearly": 340,
+        "tracking_method": "entry_count",
+        "description": "Journal nightly (<25 missed days/year)"
+      }
+    },
+    "mental_health": {
+      "positive_days": {
+        "name": "Positive Days",
+        "target_monthly_pct": 35,
+        "description": "35%+ days with score >= 1"
+      },
+      "negative_days": {
+        "name": "Limit Negative Days",
+        "target_monthly_pct": 20,
+        "description": "<20% days with score <= -1"
+      }
+    }
+  },
+  "tracking_notes": [
+    "Gym was 32% of target in 2025 - needs significant improvement",
+    "Dog walks were 93% - maintain this habit",
+    "Q4 had lowest engagement - watch for post-event dips",
+    "Work boundary issues appeared in many -2 days"
+  ],
+  "qualitative_keywords": {
+    "drinking": ["drink", "beer", "wine", "alcohol", "drunk", "cocktail", "whiskey", "bourbon"],
+    "reading": ["read", "book", "kindle", "reading"],
+    "screens": ["screen", "phone", "doom", "scroll", "instagram", "twitter", "tiktok"],
+    "work_stress": ["boundary", "boundaries", "overwork", "exhausted", "meetings", "no break"]
+  }
+}
